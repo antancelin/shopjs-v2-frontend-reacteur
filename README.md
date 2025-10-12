@@ -1,10 +1,10 @@
-# 🛒 ShopJS v2 - Frontend
+# ShopJS v2 - Frontend
 
 Interface e-commerce moderne construite avec Next.js 15, TypeScript et Tailwind CSS.
 
-## 🚀 Fonctionnalités
+## Fonctionnalités
 
-### 📱 **Pages & Routes**
+### **Pages & Routes**
 
 - **`/`** - Page d'accueil avec présentation de la boutique
 - **`/products`** - Liste des produits avec recherche & contrôles panier
@@ -15,7 +15,7 @@ Interface e-commerce moderne construite avec Next.js 15, TypeScript et Tailwind 
 - **`/users/signup`** - Inscription utilisateur
 - **`/admin`** - Tableau de bord admin pour la gestion des commandes (admins uniquement)
 
-### 🔧 **Stack Technique**
+### **Stack Technique**
 
 - **Framework :** Next.js 15 avec App Router
 - **Langage :** TypeScript
@@ -25,7 +25,7 @@ Interface e-commerce moderne construite avec Next.js 15, TypeScript et Tailwind 
 - **Validation :** Schémas Zod pour la validation runtime
 - **Cache :** Fetch natif Next.js avec revalidation personnalisée
 
-### ⚡ **Fonctionnalités Clés**
+### **Fonctionnalités Clés**
 
 - **Panier côté client** avec persistance localStorage
 - **Recherche temps réel** avec filtrage instantané
@@ -35,7 +35,7 @@ Interface e-commerce moderne construite avec Next.js 15, TypeScript et Tailwind 
 - **Gestion d'erreurs** avec messages conviviaux
 - **Optimisation d'images** avec le composant Next.js Image
 
-## 🛠️ Installation & Configuration
+## Installation & Configuration
 
 ### Prérequis
 
@@ -71,7 +71,7 @@ npm run dev
 
 Ouvrir [http://localhost:3000](http://localhost:3000)
 
-## 📦 Scripts
+## Scripts
 
 ```bash
 npm run dev       # Démarrer le serveur de développement avec Turbopack
@@ -80,7 +80,7 @@ npm run start     # Démarrer le serveur de production
 npm run lint      # Exécuter ESLint
 ```
 
-## 🏗️ Structure du Projet
+## Structure du Projet
 
 ```
 src/
@@ -105,7 +105,7 @@ src/
 └── types/                 # Définitions de types TypeScript
 ```
 
-## 🔐 Authentification & Sécurité
+## Authentification & Sécurité
 
 ### Rôles Utilisateur
 
@@ -124,7 +124,7 @@ src/
 - Contrôle d'accès basé sur les rôles
 - Gestion d'état d'authentification côté client
 
-## 🛒 Gestion du Panier
+## Gestion du Panier
 
 - **État côté client** avec React Context + useReducer
 - **Stockage persistant** avec localStorage
@@ -132,7 +132,7 @@ src/
 - **Contrôles de quantité** avec validation
 - **Calculs de prix** avec support des remises
 
-## ⚡ Performance & Cache
+## Performance & Cache
 
 ### Stratégie de Cache Next.js
 
@@ -147,7 +147,7 @@ src/
 - Déduplication des requêtes fetch
 - Génération de pages statiques quand possible
 
-## 🎨 UI/UX
+## UI/UX
 
 - **Système de Design :** Composants Shadcn/ui
 - **Design Responsive :** Approche mobile-first
@@ -155,7 +155,7 @@ src/
 - **États de Chargement :** Écrans squelettes et spinners
 - **Gestion d'Erreurs :** Messages d'erreur conviviaux
 
-## 🔌 Intégration API
+## Intégration API
 
 Se connecte à l'API Shopjsv2-Backend avec les endpoints :
 
@@ -167,7 +167,7 @@ Se connecte à l'API Shopjsv2-Backend avec les endpoints :
 - `GET /orders` - Gestion des commandes admin
 - `PUT /orders/:id` - Mettre à jour le statut de la commande
 
-## 🚀 Déploiement
+## Déploiement
 
 ### Vercel (Recommandé)
 
@@ -185,7 +185,7 @@ Compatible avec toute plateforme supportant Next.js :
 - Railway
 - DigitalOcean App Platform
 
-## 🔗 Projets Associés
+## Projets Associés
 
 - **[Shopjsv2-Backend](https://github.com/antancelin/shopjsv2-backend)** - Serveur API Express.js
 
