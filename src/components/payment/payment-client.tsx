@@ -291,7 +291,7 @@ export default function PaymentClient() {
                     value={JSON.stringify(state)}
                   />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Prénom */}
+                    {/* First name */}
                     <div className="space-y-2">
                       <Label htmlFor="firstName">Prénom *</Label>
                       <Input
@@ -303,7 +303,7 @@ export default function PaymentClient() {
                       />
                     </div>
 
-                    {/* Nom */}
+                    {/* Last name */}
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Nom *</Label>
                       <Input
@@ -316,7 +316,7 @@ export default function PaymentClient() {
                     </div>
                   </div>
 
-                  {/* Adresse ligne 1 */}
+                  {/* Address line 1 */}
                   <div className="space-y-2">
                     <Label htmlFor="address1">Adresse *</Label>
                     <Input
@@ -328,7 +328,7 @@ export default function PaymentClient() {
                     />
                   </div>
 
-                  {/* Adresse ligne 2 (optionnel) */}
+                  {/* Address line 2 (optional) */}
                   <div className="space-y-2">
                     <Label htmlFor="address2">Complément d&apos;adresse</Label>
                     <Input
@@ -340,7 +340,7 @@ export default function PaymentClient() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {/* Code postal */}
+                    {/* Postal code */}
                     <div className="space-y-2">
                       <Label htmlFor="postalCode">Code postal *</Label>
                       <Input
@@ -352,7 +352,7 @@ export default function PaymentClient() {
                       />
                     </div>
 
-                    {/* Ville */}
+                    {/* City */}
                     <div className="space-y-2 md:col-span-2">
                       <Label htmlFor="city">Ville *</Label>
                       <Input
@@ -365,7 +365,7 @@ export default function PaymentClient() {
                     </div>
                   </div>
 
-                  {/* Téléphone */}
+                  {/* Phone */}
                   <div className="space-y-2">
                     <Label htmlFor="phone">Téléphone *</Label>
                     <Input

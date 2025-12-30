@@ -35,8 +35,8 @@ export async function apiRequest<T>(
     const cacheInfo = cacheOptions?.revalidate
       ? `Cache: ${cacheOptions.revalidate}s`
       : "No cache";
-    console.log(`🌐 API ${options.method || "GET"} ${endpoint} - ${cacheInfo}`);
-    console.log(`⏰ ${new Date().toLocaleTimeString()}`);
+    console.log(`API ${options.method || "GET"} ${endpoint} - ${cacheInfo}`);
+    console.log(`Time: ${new Date().toLocaleTimeString()}`);
   }
 
   async function fetchWithRetry(

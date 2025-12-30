@@ -39,9 +39,11 @@ export default function AdminClient() {
 
       try {
         setLoading(true);
-        const res = await fetch(
-          `/api/admin/orders?token=${encodeURIComponent(user.token)}`
-        );
+        const res = await fetch("/api/admin/orders", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         if (!res.ok) throw new Error("Erreur lors du chargement");
         const ordersData: Order[] = await res.json();
         setOrders(ordersData);

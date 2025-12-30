@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      {/* ✅ Container comme le main */}
+      {/* Container aligned with main */}
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
@@ -53,7 +53,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* ✅ Navigation desktop - VRAIMENT centrée */}
+        {/* Desktop navigation (centered) */}
         <nav className="hidden md:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2">
           <Link
             href="/products"
@@ -71,12 +71,12 @@ export default function Header() {
           )}
         </nav>
 
-        {/* Actions desktop */}
+        {/* Desktop actions */}
         <div className="hidden md:flex items-center space-x-4">
-          {/* Point vert */}
+          {/* Auth status dot */}
           {isAuthenticated && <span className="text-green-600 text-lg">●</span>}
 
-          {/* Panier */}
+          {/* Cart */}
           <Link href="/cart">
             <Button
               variant="outline"
@@ -128,10 +128,10 @@ export default function Header() {
 
         {/* Mobile menu */}
         <div className="md:hidden flex items-center space-x-2">
-          {/* Point vert mobile */}
+          {/* Auth status dot (mobile) */}
           {isAuthenticated && <span className="text-green-600 text-lg">●</span>}
 
-          {/* Panier mobile */}
+          {/* Cart (mobile) */}
           <Link href="/cart">
             <Button variant="outline" size="sm" className="relative">
               <ShoppingCart className="h-4 w-4" />
@@ -161,7 +161,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ✅ Menu mobile dropdown avec padding */}
+      {/* Mobile dropdown menu with padding */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-t bg-background/95 backdrop-blur">
           <div className="container mx-auto px-4 py-4 space-y-4">

@@ -1,194 +1,122 @@
-# ShopJS v2 - Frontend
+# ShopJS v2 Frontend
 
-Interface e-commerce moderne construite avec Next.js 15, TypeScript et Tailwind CSS.
+Modern e-commerce frontend built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
-## Fonctionnalités
+Live demo: [shopjsv2-frontend.vercel.app](https://shopjsv2-frontend.vercel.app)
 
-### **Pages & Routes**
+## Features
 
-- **`/`** - Page d'accueil avec présentation de la boutique
-- **`/products`** - Liste des produits avec recherche & contrôles panier
-- **`/products/[id]`** - Détails du produit avec gestion des quantités
-- **`/cart`** - Panier d'achat avec gestion des articles
-- **`/payment`** - Commande sécurisée (utilisateurs authentifiés uniquement)
-- **`/users/login`** - Authentification utilisateur
-- **`/users/signup`** - Inscription utilisateur
-- **`/admin`** - Tableau de bord admin pour la gestion des commandes (admins uniquement)
+- Product listing with search
+- Product details page with quantity controls
+- Client-side cart with localStorage persistence
+- Authentication (signup/login)
+- Checkout flow (authenticated users only)
+- Admin dashboard (admin users only)
 
-### **Stack Technique**
+## Tech stack
 
-- **Framework :** Next.js 15 avec App Router
-- **Langage :** TypeScript
-- **Styles :** Tailwind CSS + composants Shadcn/ui
-- **Gestion d'état :** React Context + useReducer
-- **Formulaires :** useActionState pour la gestion moderne des formulaires
-- **Validation :** Schémas Zod pour la validation runtime
-- **Cache :** Fetch natif Next.js avec revalidation personnalisée
+- Next.js 15 (App Router)
+- React 19, TypeScript
+- Tailwind CSS + shadcn/ui components
+- Zod schemas for runtime validation
+- React Context + reducers for state management
 
-### **Fonctionnalités Clés**
+## Pages
 
-- **Panier côté client** avec persistance localStorage
-- **Recherche temps réel** avec filtrage instantané
-- **Design responsive** (mobile & desktop)
-- **Authentification & autorisation** avec accès basé sur les rôles
-- **Gestion intelligente du cache** (3min général, 1min admin)
-- **Gestion d'erreurs** avec messages conviviaux
-- **Optimisation d'images** avec le composant Next.js Image
+- `/` home
+- `/products` products list
+- `/products/[id]` product details
+- `/cart` cart
+- `/payment` checkout (protected)
+- `/users/login` login
+- `/users/signup` signup
+- `/admin` admin dashboard (protected)
 
-## Installation & Configuration
-
-### Prérequis
+## Requirements
 
 - Node.js 18+
-- npm ou yarn
-- API Backend en cours d'exécution (voir Shopjsv2-Backend)
+- npm or yarn
+- The backend API running (see the backend repository)
 
-### 1. Cloner & Installer
+## Getting started (local)
+
+Install dependencies:
 
 ```bash
-git clone https://github.com/antancelin/shopjsv2-frontend.git
-cd Shopjsv2-Frontend
 npm install
 ```
 
-### 2. Variables d'Environnement
+Create `.env.local`:
 
-Créer le fichier `.env.local` :
-
-```env
-# Configuration API
-NEXT_PUBLIC_API_URL=https://votre-backend-api-url.com
-
-# Développement (optionnel)
-NODE_ENV=development
+```dotenv
+NEXT_PUBLIC_API_URL=http://localhost:4000
 ```
 
-### 3. Lancer le Serveur de Développement
+Notes:
+
+- `NEXT_PUBLIC_API_URL` is exposed to the browser by design (public env var).
+- Prefer a base URL without a trailing slash (for example `http://localhost:4000`).
+
+Start the dev server:
 
 ```bash
 npm run dev
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000)
+Open `http://localhost:3000`.
 
 ## Scripts
 
 ```bash
-npm run dev       # Démarrer le serveur de développement avec Turbopack
-npm run build     # Build pour la production
-npm run start     # Démarrer le serveur de production
-npm run lint      # Exécuter ESLint
+npm run dev
+npm run build
+npm run start
+npm run lint
 ```
 
-## Structure du Projet
+## Project structure
 
 ```
 src/
-├── app/                   # Next.js 15 App Router
-│   ├── (routes)/          # Pages de l'application
-│   ├── api/               # Routes API
-│   └── layout.tsx         # Layout racine
-├── components/            # Composants réutilisables
-│   ├── ui/                # Composants de base Shadcn/ui
-│   ├── auth/              # Composants d'authentification
-│   ├── cart/              # Composants panier
-│   ├── product/           # Composants produit
-│   ├── payment/           # Composants paiement
-│   ├── admin/             # Composants admin
-│   └── layout/            # Composants de layout
-├── context/               # Providers React Context
-│   ├── auth-context.tsx   # État d'authentification
-│   └── cart-context.tsx   # État du panier
-├── lib/                   # Utilitaires & clients API
-│   └── api/               # Couche API avec cache
-├── schemas/               # Schémas de validation Zod
-└── types/                 # Définitions de types TypeScript
+  app/            # Next.js App Router routes
+  components/     # UI components
+  context/        # Auth and cart providers
+  lib/api/        # Typed API client helpers
+  schemas/        # Zod schemas
+  types/          # TypeScript types
 ```
 
-## Authentification & Sécurité
+## Authentication and authorization
 
-### Rôles Utilisateur
+- The backend issues a token on signup/login.
+- The frontend stores the authenticated user in localStorage.
+- Protected pages:
+  - `/payment` requires an authenticated user
+  - `/admin` requires an authenticated admin user
 
-- **Utilisateurs Normaux :** Peuvent naviguer, ajouter au panier et passer des commandes
-- **Utilisateurs Admin :** Accès supplémentaire au tableau de bord de gestion des commandes
+Admin data fetching:
 
-### Routes Protégées
+- The admin dashboard calls the internal Next route `GET /api/admin/orders`.
+- Authentication is passed through the `Authorization: Bearer <token>` header.
 
-- `/payment` - Nécessite une authentification
-- `/admin` - Nécessite des privilèges admin
+## API integration
 
-### Fonctionnalités de Sécurité
+This frontend talks to the backend API endpoints:
 
-- Validation de formulaires avec schémas Zod
-- Routes API protégées
-- Contrôle d'accès basé sur les rôles
-- Gestion d'état d'authentification côté client
+- `GET /products` (with optional `?search=term`)
+- `GET /products/:id`
+- `POST /user/signup`
+- `POST /user/login`
+- `POST /orders` (authenticated)
+- `GET /orders` (admin only)
+- `PUT /orders/mark-delivered/:id` (admin only)
 
-## Gestion du Panier
+## Deployment (Vercel)
 
-- **État côté client** avec React Context + useReducer
-- **Stockage persistant** avec localStorage
-- **Mises à jour temps réel** dans tous les composants
-- **Contrôles de quantité** avec validation
-- **Calculs de prix** avec support des remises
+Set the environment variable:
 
-## Performance & Cache
+- `NEXT_PUBLIC_API_URL` = your backend API base URL
 
-### Stratégie de Cache Next.js
+## Related project
 
-- **Requêtes générales :** Cache de 3 minutes
-- **Requêtes admin :** Cache de 1 minute
-- **Actions dynamiques :** Pas de cache (POST/PUT)
-
-### Optimisations
-
-- Optimisation d'images avec Next.js Image
-- Splitting du code des composants
-- Déduplication des requêtes fetch
-- Génération de pages statiques quand possible
-
-## UI/UX
-
-- **Système de Design :** Composants Shadcn/ui
-- **Design Responsive :** Approche mobile-first
-- **Accessibilité :** Labels ARIA et navigation clavier
-- **États de Chargement :** Écrans squelettes et spinners
-- **Gestion d'Erreurs :** Messages d'erreur conviviaux
-
-## Intégration API
-
-Se connecte à l'API Shopjsv2-Backend avec les endpoints :
-
-- `GET /products` - Catalogue de produits
-- `GET /products/:id` - Détails du produit
-- `POST /user/signup` - Inscription utilisateur
-- `POST /user/login` - Authentification utilisateur
-- `POST /orders` - Créer une nouvelle commande
-- `GET /orders` - Gestion des commandes admin
-- `PUT /orders/:id` - Mettre à jour le statut de la commande
-
-## Déploiement
-
-### Vercel (Recommandé)
-
-1. Connecter votre dépôt GitHub à Vercel
-2. Ajouter la variable d'environnement :
-   - `NEXT_PUBLIC_API_URL` : URL de votre API backend
-3. Déploiement automatique à chaque push
-
-### Autres Plateformes
-
-Compatible avec toute plateforme supportant Next.js :
-
-- Netlify
-- AWS Amplify
-- Railway
-- DigitalOcean App Platform
-
-## Projets Associés
-
-- **[Shopjsv2-Backend](https://github.com/antancelin/shopjsv2-backend)** - Serveur API Express.js
-
----
-
-**Construit utilisant Next.js 15, TypeScript et les patterns React modernes.**
+- Backend repository: [shopjsv2-backend](https://github.com/antancelin/shopjsv2-backend)

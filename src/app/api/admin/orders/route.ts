@@ -6,8 +6,11 @@ import { getOrders } from "@/lib/api/orders";
 const cache = new Map<string, { data: unknown; expiresAt: number }>();
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const token = searchParams.get("token");
+  const authHeader = req.headers.get("authorization");
+  const token =
+    authHeader && authHeader.startsWith("Bearer ")
+      ? authHeader.slice("Bearer ".length).trim()
+      : null;
   if (!token) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
